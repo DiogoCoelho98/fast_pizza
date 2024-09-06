@@ -1,6 +1,6 @@
-// TO DO - FIX THE KEY OF THE API
 const API_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
+// User address information with reverse geocode
 export async function getAddress(latitude, longitude) {
     try {
         const res = await fetch(`${API_URL}?latitude=${latitude}&longitude=${longitude}`);
@@ -13,14 +13,3 @@ export async function getAddress(latitude, longitude) {
         return null;
     }
 }
-// Test
-const latitude = 37.7749;
-const longitude = -122.4194;
-
-getAddress(latitude, longitude).then(addressData => {
-    if (addressData) {
-        console.log("Address data:", addressData); // Or inspect parts of the data here
-    } else {
-        console.log("Failed to fetch address.");
-    }
-}); 
