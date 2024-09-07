@@ -1,7 +1,9 @@
 import { getAddress } from "../../services/apiGeocoding.js";
 
+// User current geographical location (lat/lng)
 function getPosition() {
     return new Promise(function(resolve, reject) {
+        // Browser API to access geographical position
         navigator.geolocation.getCurrentPosition(resolve, reject)
     });
 }
