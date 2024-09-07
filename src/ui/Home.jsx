@@ -3,7 +3,7 @@ export default function Home() {
         <div>
             <h1>
                 The best pizza <br/>
-                Staright out of the oven to you
+                Straight out of the oven to you
             </h1>
         </div>
     );
