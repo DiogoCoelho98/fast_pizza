@@ -8,7 +8,7 @@ export default function NotFound() {
     return (
         <div>
             <h1>Something went wrong 😛</h1>
-            <p>{error.error.message}</p>
+            <p>{error.data || error.message}</p>
             <button 
                 onClick={() => navigate(-1)}
             >

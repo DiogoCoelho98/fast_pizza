@@ -20,5 +20,5 @@ export function formatDate(date){
 export function calcMinutesLeft(targetDate) {
     const date1 = new Date().getTime(); // Current time
     const date2 = new Date(targetDate).getTime(); // Target time
-    return Math.random((date2 - date1) / 60000);
+    return Math.round((date2 - date1) / 60000);
 } 
