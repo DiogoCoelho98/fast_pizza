@@ -1,5 +1,6 @@
-import { useState } from "react";
-
+import { Form, redirect } from "react-router-dom";
+import { createOrder } from "../../services/apiRestaurant.js";
+ 
 const fakeCart = [
     {
       pizzaId: 12,
@@ -25,15 +26,13 @@ const fakeCart = [
   ];  
 
 export default function CreateOrder() {
-    const [priority, setPriority] = useState(false);
     const cart = fakeCart;
-
 
     return ( 
         <div>
             <h2>Ready to order? Let's go</h2>
-
-            <form>
+        
+            <Form method="POST" action="/order/new">
                 <div>
                     <label>First name</label>
                     <input 
@@ -70,8 +69,6 @@ export default function CreateOrder() {
                         type="checkbox" 
                         name="priority"
                         id="priority"
-                        onChange={e => setPriority(e.target.value)}
-                        value={priority}    
                     />
                     <label htmlFor="priority">
                         Do you want to add your order as priority?
@@ -79,9 +76,26 @@ export default function CreateOrder() {
                 </div>
 
                 <div>
+                    <input 
+                        type="hidden" 
+                        name="cart" 
+                        value={JSON.stringify(cart)}    
+                    />
                     <button>Order now</button>
                 </div>
-            </form>
+            </Form>
         </div>
     )
+}
+
+export async function action({ request }) { 
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    const order = {
+        ...data,
+        cart: JSON.parse(data.cart),
+        priority: data.priority === "on",
+    };
+    const newOrder = await createOrder(order);
+    return redirect(`/order/${newOrder.data.id}`);
 }

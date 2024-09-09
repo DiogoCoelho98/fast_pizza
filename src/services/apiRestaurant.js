@@ -18,9 +18,10 @@ export async function getMenu() {
 export async function getOrder(id) {
    try {
         const res = await fetch(`${API_URL}/order/${id}`);
-        if (!res.ok) throw new Error("Failed fetching order");
+        if (!res.ok) throw new Error(`Failed fetching order #${id}`);
         const data = await res.json();
         if (data.status !== "success") throw new Error(data.message);
+        console.log(Object.entries(data));
         return data
    } catch(err) {
     console.error(err.message);

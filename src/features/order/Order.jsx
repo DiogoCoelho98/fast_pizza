@@ -2,11 +2,11 @@ import { formatCurrency, formatDate, calcMinutesLeft  } from "../../utils/helper
 import { getOrder } from "../../services/apiRestaurant.js"
 import { useLoaderData } from "react-router";
 
-// test id - IIDSAT
+// test id's - IIDSAT/CQU92U
 
 export default function Order() {
     const order = useLoaderData();
-    console.log(order.data)
+    console.log(order);
     const { 
         id,
         status,
@@ -49,8 +49,9 @@ export default function Order() {
         </div>
     );
 }
-// Access req. params in the URL, similar to useParams in components
-export async function loader ({ params }) {
+// Access req. params in the URL, similar to useParams()
+export async function loader({ params }) {
+    if (!params.orderId) throw new Error('orderId is missing in the params');
     const order = await getOrder(params.orderId);
     return order;
 }
