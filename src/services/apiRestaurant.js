@@ -21,7 +21,6 @@ export async function getOrder(id) {
         if (!res.ok) throw new Error(`Failed fetching order #${id}`);
         const data = await res.json();
         if (data.status !== "success") throw new Error(data.message);
-        console.log(Object.entries(data));
         return data
    } catch(err) {
     console.error(err.message);

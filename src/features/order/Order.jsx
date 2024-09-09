@@ -6,7 +6,6 @@ import { useLoaderData } from "react-router";
 
 export default function Order() {
     const order = useLoaderData();
-    console.log(order);
     const { 
         id,
         status,
@@ -23,7 +22,6 @@ export default function Order() {
 
             <div>
                 <h2>Status</h2>
-
                 <div>
                     {priority && <span>Priority</span>}
                     <span> {status} order</span>
@@ -49,7 +47,7 @@ export default function Order() {
         </div>
     );
 }
-// Access req. params in the URL, similar to useParams()
+// Access req. params in the URL
 export async function loader({ params }) {
     if (!params.orderId) throw new Error('orderId is missing in the params');
     const order = await getOrder(params.orderId);
