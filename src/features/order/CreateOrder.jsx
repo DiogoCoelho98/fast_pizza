@@ -1,5 +1,7 @@
 import { Form, redirect, useNavigation, useActionData } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant.js";
+import Button from "../../ui/Button.jsx";
+
 
 // Validate phone number format (+1 (555) 555-5555 / 123-456-7890 / etc)
 const isValidPhone = (str) =>
@@ -46,6 +48,7 @@ export default function CreateOrder() {
                         type="text" 
                         name="customer"
                         required
+                        className="input"
                     />
                 </div>
 
@@ -55,7 +58,8 @@ export default function CreateOrder() {
                         <input 
                             type="tel" 
                             name="phone"
-                            required    
+                            required 
+                            className="input"   
                         />
                         {formErrors?.phone && <p>{formErrors.phone}</p>}
                     </div>
@@ -68,6 +72,7 @@ export default function CreateOrder() {
                             type="text"
                             name="address"
                             required 
+                            className="input"
                         />
                     </div>
                 </div>
@@ -77,6 +82,15 @@ export default function CreateOrder() {
                         type="checkbox" 
                         name="priority"
                         id="priority"
+                        className="
+                            h-6
+                            w-6
+                            accent-yellow-400
+                            focus:outline-none
+                            focus:ring
+                            focus:ring-yellow-400
+                            focus:ring-offset-1
+                            "
                     />
                     <label htmlFor="priority">
                         Do you want to add your order as priority?
@@ -89,11 +103,9 @@ export default function CreateOrder() {
                         name="cart" 
                         value={JSON.stringify(cart)}    
                     />
-                    <button 
-                        disabled={isSubmitting}
-                    >
+                    <Button disabled={isSubmitting}>
                         {isSubmitting ? "Placing order..." : "Order now"}
-                    </button>
+                    </Button>
                 </div>
             </Form>
         </div>

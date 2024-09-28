@@ -16,9 +16,25 @@ export default function SearchOrder() {
        <form onSubmit={handleSubmit}>
             <input 
                 type="text" 
-                placeholder="Search order number #"
+                placeholder="Search order number"
                 onChange={e => setQuery(e.target.value)}
-                value={query}    
+                value={query} 
+                className="
+                    rounded-full
+                    px-4
+                    py-2
+                    text-sm
+                    bg-yellow-200
+                    placeholder:text-stone-400
+                    w-28
+                    sm:w-64
+                    focus:sm:w-72
+                    transition-all
+                    duration-300
+                    focus:outline-none
+                    focus:ring
+                    focus:ring-yellow-500
+                    "   
             />
        </form>
     );

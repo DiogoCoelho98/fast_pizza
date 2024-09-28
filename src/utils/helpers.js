@@ -1,4 +1,4 @@
-// Converts value into the format - €1,234.45 (for example)
+// Converts value into the format - €1,234.45
 export function formatCurrency(value) {
     return new Intl.NumberFormat("en", {
         style: "currency",
@@ -6,7 +6,7 @@ export function formatCurrency(value) {
     }).format(value);
 }
 
-// Converts a date into the format - "6 Sep, 02:30 PM" (for example)
+// Converts a date into the format - "6 Sep, 02:30 PM"
 export function formatDate(date){
     return new Intl.DateTimeFormat("en", {
         day: "numeric",
