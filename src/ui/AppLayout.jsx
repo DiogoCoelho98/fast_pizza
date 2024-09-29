@@ -8,7 +8,7 @@ import Loader from "./Loader.jsx";
 export default function AppLayout() {
     const navigation = useNavigation();
     const isLoading = navigation.state === "loading";
-
+    
     return (
         <div className="
             grid
