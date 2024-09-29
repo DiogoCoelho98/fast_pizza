@@ -38,46 +38,88 @@ export default function CreateOrder() {
     const cart = fakeCart;
     
     return ( 
-        <div>
-            <h2>Ready to order? Let's go</h2>
+        <div className="
+                px-4
+                py-6"
+        >
+            <h2 className="
+                text-xl
+                font-semibold
+                mb-8"
+            >
+                Ready to order? Let's go
+            </h2>
         
             <Form method="POST" action="/order/new">
-                <div>
-                    <label>First name</label>
+                <div className="
+                    flex
+                    flex-col
+                    gap-2
+                    sm:flex-row
+                    sm:items-center
+                    mb-5
+                    space-y-4"
+                >
+                    <label className="sm:basis-40">First name</label>
                     <input 
                         type="text" 
                         name="customer"
                         required
-                        className="input"
+                        className="input grow"
                     />
                 </div>
 
-                <div>
-                    <label>Phone number</label>
-                    <div>
+                <div className="
+                    flex
+                    flex-col
+                    gap-2
+                    sm:flex-row
+                    sm:items-center
+                    mb-5
+                    space-y-4">
+                    <label className="sm:basis-40">Phone number</label>
+                    <div className="grow">
                         <input 
                             type="tel" 
                             name="phone"
                             required 
-                            className="input"   
+                            className="input w-full"   
                         />
-                        {formErrors?.phone && <p>{formErrors.phone}</p>}
+                        {formErrors?.phone && <p className="
+                        text-xs
+                        mt-2
+                        text-red-500"
+                        >
+                            {formErrors.phone}
+                        </p>}
                     </div>
                 </div>
 
-                <div>
-                    <label>Address</label>
-                    <div>
+                <div className="
+                    flex
+                    flex-col
+                    gap-2
+                    sm:flex-row
+                    sm:items-center
+                    mb-5
+                    space-y-4">
+                    <label className="sm:basis-40">Address</label>
+                    <div className="grow">
                         <input 
                             type="text"
                             name="address"
                             required 
-                            className="input"
+                            className="input w-full"
                         />
                     </div>
                 </div>
 
-                <div>
+                <div className="
+                        mb-12
+                        flex
+                        gap-5
+                        items-center"
+                >
                     <input 
                         type="checkbox" 
                         name="priority"
@@ -92,7 +134,10 @@ export default function CreateOrder() {
                             focus:ring-offset-1
                             "
                     />
-                    <label htmlFor="priority">
+                    <label 
+                        htmlFor="priority"
+                        className="font-medium"
+                    >
                         Do you want to add your order as priority?
                     </label>
                 </div>

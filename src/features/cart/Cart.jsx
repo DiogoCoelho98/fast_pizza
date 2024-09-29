@@ -63,7 +63,9 @@ export default function Cart() {
 
             <div className="
                     mt-6 
-                    space-x-2
+                    space-x-6
+                    flex
+                    justify-between
                     "
             >
                 <Button to={"/order/new"} type="primary">Order pizzas</Button>
