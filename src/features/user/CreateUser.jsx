@@ -32,7 +32,7 @@ export default function CreateUser() {
 
             {fullName !== "" && (
                 <div>
-                    <Button>Start ordering</Button>
+                    <Button type="primary">Start ordering</Button>
                 </div>
             )}
         </form>

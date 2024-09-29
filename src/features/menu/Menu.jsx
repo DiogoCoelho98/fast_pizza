@@ -4,11 +4,10 @@ import { useLoaderData } from "react-router";
 import MenuItem from "./MenuItem.jsx";
 
 export default function Menu() {
-    // Receives data from createBrowserRouter() -> loader property
     const menu = useLoaderData();
-
+    
     return (
-        <ul>
+        <ul className="divide-y divide-stone-200 px-2">
             {menu.map(pizza => (
                 <MenuItem 
                     pizza={pizza} 

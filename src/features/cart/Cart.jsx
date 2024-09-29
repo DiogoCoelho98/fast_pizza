@@ -37,7 +37,7 @@ export default function Cart() {
             <h2>Your name, %NAME%</h2>
 
             <div>
-                <Button to={"/order/new"}>Order pizzas</Button>
+                <Button to={"/order/new"} type="primary">Order pizzas</Button>
                 <button>Clear cart</button>
             </div>
         </div>
