@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
+import LinkButton from "../../ui/LinkButton";
 
 export default function EmptyCart() {
     return (
-        <div>
-            <Link to={"/menu"}>&larr; Back to menu</Link>
-            <p>
-                Your cart still empty<br/>
-                Order some pizzas
+        <div className="
+                py-3
+                px-4"
+        >
+        <LinkButton to={"/menu"}>&larr; Back to menu</LinkButton>
+            <p className="
+                    font-semibold
+                    mt-7"
+            >
+                Your cart is empty, order some pizzas 🍕
             </p>
         </div>
     );
