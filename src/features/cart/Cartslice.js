@@ -45,8 +45,16 @@ export function getCartTotalPizzas(store) {
     }, 0)
 }
 
+export function getQuantityById(id) {
+    return function(state) {
+        return state.cart.cart.find(function(item) {
+            return item.pizzaId === id;
+        })?.quantity ?? 0;
+    };
+}
+
 export function getCartTotalPrice(store) {
     return store.cart.cart.reduce((acc, curr) => {
-       return acc + curr.totalPrice;  
+        return acc + curr.totalPrice;  
     }, 0)
 }

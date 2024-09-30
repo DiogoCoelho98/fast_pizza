@@ -1,5 +1,5 @@
 import { formatCurrency } from "../../utils/helpers";
-import Button from "../../ui/Button.jsx";
+import DeleteItem from "./DeleteItem.jsx";
 
 
 export default function CartItem({ item }) {
@@ -30,7 +30,12 @@ export default function CartItem({ item }) {
                 >
                     {formatCurrency(totalPrice)}
                 </p>
-                <Button type="small">Delete</Button>
+                <DeleteItem 
+                    type="small"
+                    pizzaId={pizzaId}
+                >
+                    Delete
+                </DeleteItem>
             </div>
         </li>
     )

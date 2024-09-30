@@ -55,8 +55,18 @@ export default function Cart() {
                     justify-between
                     "
             >
-                <Button to={"/order/new"} type="primary">Order pizzas</Button>
-                <Button type="secondary" onClick={handleClearCart}>Clear cart</Button>
+                <Button 
+                    to={"/order/new"} 
+                    type="primary"
+                >
+                    Order pizzas
+                </Button>
+                <Button 
+                    type="secondary" 
+                    onClick={handleClearCart}
+                >
+                        Clear cart
+                </Button>
             </div>
         </div>
     )

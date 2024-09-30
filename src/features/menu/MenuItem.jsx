@@ -1,12 +1,15 @@
 import { formatCurrency } from "../../utils/helpers.js"
-import { useDispatch } from "react-redux";
-import { addItem } from "../cart/Cartslice.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, getQuantityById } from "../cart/Cartslice.js";
 import Button from "../../ui/Button.jsx";
+import DeleteItem from "../cart/DeleteItem.jsx";
 
 export default function MenuItem({ pizza }) {
     const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
-    console.log(pizza)
     const dispatch = useDispatch();
+    // Check if the item it's in the arr
+    const currentQuantity = useSelector(getQuantityById(id));
+    const isInCart = currentQuantity > 0;
 
     function handleAddCart() {
         const newItem = {
@@ -68,17 +71,28 @@ export default function MenuItem({ pizza }) {
                                 font-medium
                                 text-stone-500"
                             >
-                                    Sold out</p>
+                                Sold out
+                            </p>
                     }
-                    {
-                        !soldOut && 
-                            <Button 
-                                type="small"
-                                onClick={handleAddCart}
-                            >
-                                Add to cart
-                            </Button>
-                    }
+                    <div className="flex gap-4">
+                        {
+                            !soldOut && 
+                                <Button 
+                                    type="small"
+                                    onClick={handleAddCart}
+                                >
+                                    Add to cart
+                                </Button>
+                        }
+                        {
+                            isInCart && 
+                                <DeleteItem 
+                                    pizzaId={id}
+                                >
+                                    -
+                                </DeleteItem>
+                        }
+                    </div>
                 </div>
             </div>
         </li>
