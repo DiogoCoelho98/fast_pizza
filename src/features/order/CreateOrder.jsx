@@ -1,5 +1,6 @@
 import { Form, redirect, useNavigation, useActionData } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant.js";
+import { useSelector } from "react-redux";
 import Button from "../../ui/Button.jsx";
 
 
@@ -36,6 +37,7 @@ export default function CreateOrder() {
     const isSubmitting = navigation.state === "submitting";
     const formErrors = useActionData();
     const cart = fakeCart;
+    const username = useSelector(store => store.user.username);
     
     return ( 
         <div className="
@@ -64,6 +66,8 @@ export default function CreateOrder() {
                     <input 
                         type="text" 
                         name="customer"
+                        // defaultValue allows to change the value input, contraty to value
+                        defaultValue={username}  
                         required
                         className="input grow"
                     />

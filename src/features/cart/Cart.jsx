@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import LinkButton from "../../ui/LinkButton.jsx";
 import Button from "../../ui/Button.jsx";
 import CartItem from "./CartItem.jsx";
@@ -28,6 +29,7 @@ const fakeCart = [
  
 export default function Cart() {
     const cart = fakeCart;
+    const username = useSelector(store => store.user.username);
 
     return( 
         <div className="
@@ -44,7 +46,7 @@ export default function Cart() {
                     text-xl 
                     font-semibold"
             >
-                Your name, %USERNAME%
+                Your cart, {username}
             </h2>
 
             <ul className="
