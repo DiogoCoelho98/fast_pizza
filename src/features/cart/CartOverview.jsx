@@ -22,15 +22,13 @@ export default function CartOverview() {
              flex
              justify-between
              items-center
-             "
-        >
+             ">
             <p className="
                 text-stone-300
                 font-semibold
                 space-x-4 
                 sm:space-x-6   
-                "
-            >
+                ">
                 <span>{totalNumberPizzas} pizzas</span>
                 <span>Total price: {formatCurrency(totalPrice)}</span>
             </p>

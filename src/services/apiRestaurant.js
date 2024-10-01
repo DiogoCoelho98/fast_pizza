@@ -23,8 +23,8 @@ export async function getOrder(id) {
         if (data.status !== "success") throw new Error(data.message);
         return data
    } catch(err) {
-    console.error(err.message);
-    return null;
+        console.error(err.message);
+        return null;
    }
 }
 

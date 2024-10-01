@@ -1,5 +1,5 @@
 import { getAddress } from "../../services/apiGeocoding.js";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // User current geographical location (lat/lng)
 function getPosition() {
@@ -9,7 +9,7 @@ function getPosition() {
     });
 }
 
-async function fetchAddress() {
+export const fetchAddress = createAsyncThunk("user/fetchAddress", async function() {
     // User geolocation position
     const positionObj = await getPosition();
     const position = {
@@ -17,14 +17,18 @@ async function fetchAddress() {
         longitude: positionObj.coords.longitude
     };
     // Reverse geocoding to access address description
-    const addressObj = await getAddress(position);
-    const address = `${addressObj?.locality}, ${addressObj?.city} ${addressObj?.postcode}, ${addressObj?.countryName}`;
+    const address = await getAddress(position);
+    console.log(address)
 
     return {position, address};
-}
+})
 
 const initialState = {
-    username: ""
+    username: "",
+    status: "idle",
+    position: {},
+    address: "",
+    error: null
 };
 
 const userSlice = createSlice({
@@ -35,6 +39,21 @@ const userSlice = createSlice({
             // payload - username
             state.username = action.payload;
         } 
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchAddress.fulfilled, (state, action) => {
+                state.status = "idle";
+                state.position = action.payload.position;
+                state.address = action.payload.address;
+            })
+            .addCase(fetchAddress.pending, state => {
+                state.status = "loading";
+            })
+            .addCase(fetchAddress.rejected, (state, action) => {
+                state.status = "error";
+                state.error = "There was a problem getting your address. Make sure to fill this field";
+            })
     }
 });
 

@@ -23,8 +23,7 @@ export default function Button({ children, disabled, to, type, onClick }) {
         return <button 
                     className={typeStyles[type]}
                     disabled={disabled}
-                    onClick={onClick}
-                    >
+                    onClick={onClick}>
                         {children}
                 </button>
     }

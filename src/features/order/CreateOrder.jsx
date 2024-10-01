@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, redirect, useNavigation, useActionData } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant.js";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { clearCart, getCart, getCartTotalPrice } from "../cart/Cartslice.js";
+import { formatCurrency } from "../../utils/helpers.js";
+import { fetchAddress } from "../user/UserSlice.js";
 import Button from "../../ui/Button.jsx";
 import EmptyCart from "../cart/EmptyCart.jsx";
 import store from "../../store.js";
-import { formatCurrency } from "../../utils/helpers.js";
 
 
 // Validate phone number format (e.g, +1 (555) 555-5555 / 123-456-7890 / etc)
@@ -19,10 +20,14 @@ export default function CreateOrder() {
     const navigation = useNavigation();
     const isSubmitting = navigation.state === "submitting";
 
+    const dispatch = useDispatch();
+
     const formErrors = useActionData();
     
     const cart = useSelector(getCart);
-    const username = useSelector(store => store.user.username);
+
+    const { username, status: addressStatus, position, address, error: errorAddress } = useSelector(store => store.user);
+    const isLoadingAddress = addressStatus === "loading";
 
     const totalCartPrice = useSelector(getCartTotalPrice);
     const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
@@ -31,7 +36,12 @@ export default function CreateOrder() {
     if (!cart.length) {
         return <EmptyCart />
     }
-    
+
+    function handleGetPosition(e) {
+        e.preventDefault();
+        dispatch(fetchAddress());
+    }
+
     return ( 
         <div className="
                 px-4
@@ -56,7 +66,6 @@ export default function CreateOrder() {
                     <input 
                         type="text" 
                         name="customer"
-                        // defaultValue allows to change the value input, contraty to value
                         defaultValue={username}  
                         required
                         className="input grow"/>
@@ -78,17 +87,18 @@ export default function CreateOrder() {
                             required 
                             className="input w-full"   
                         />
-                        {formErrors?.phone && <p className="
-                        text-xs
-                        mt-2
-                        text-red-500"
-                        >
-                            {formErrors.phone}
-                        </p>}
+                        {formErrors?.phone &&   
+                            <p className="
+                                    text-xs
+                                    mt-2
+                                    text-red-500">
+                                        {formErrors.phone}
+                            </p>}
                     </div>
                 </div>
 
                 <div className="
+                    relative
                     flex
                     flex-col
                     gap-2
@@ -102,9 +112,36 @@ export default function CreateOrder() {
                             type="text"
                             name="address"
                             required 
-                            className="input w-full"
-                        />
+                            disabled={isLoadingAddress}
+                            defaultValue={address}
+                            className="input w-full"/>
+
+                        {addressStatus === "error" && (
+                               <p className="
+                               text-xs
+                               mt-2
+                               text-red-500">
+                                    {errorAddress}
+                                </p>
+                        )}
                     </div>
+
+                {!position.latitude && !position.longitude && (
+                    <span className="
+                                absolute 
+                                right-[3px] 
+                                top-[33px] 
+                                sm:top-[1px] 
+                                md:top-[3px] 
+                                z-50">
+                        <Button 
+                            type="small"
+                            disabled={isLoadingAddress || isSubmitting}
+                            onClick={handleGetPosition}>
+                                Get position
+                        </Button>
+                    </span>
+                )}              
                 </div>
 
                 <div className="
@@ -138,6 +175,10 @@ export default function CreateOrder() {
                         type="hidden" 
                         name="cart" 
                         value={JSON.stringify(cart)}/>
+                    
+                    <input 
+                        type="hidden"
+                        name="position"/>
 
                     <Button 
                         disabled={isSubmitting} 
@@ -171,7 +212,8 @@ export async function action({ request }) {
     }
 
     const newOrder = await createOrder(order);
-    // Dispatch action directly to clear cart
+
+    // Dispatch action directly from store to clear the cart
     store.dispatch(clearCart());
 
     return redirect(`/order/${newOrder.data.id}`);

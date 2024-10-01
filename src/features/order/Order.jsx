@@ -128,7 +128,7 @@ export default function Order() {
     );
 }
 
-// Access req. params in the URL
+// Access req. params
 export async function loader({ params }) {
     if (!params.orderId) throw new Error('orderId is missing in the parameter');
     
