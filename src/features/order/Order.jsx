@@ -16,8 +16,8 @@ export default function Order() {
         estimatedDelivery,
         cart
      } = order.data;
-
-     const deliveryIn = calcMinutesLeft(estimatedDelivery);
+    
+    const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
     return (
         <div className="
@@ -34,8 +34,7 @@ export default function Order() {
             >
                 <h2 className="
                         text-xl 
-                        font-semibold"
-                >
+                        font-semibold">
                     Order #{id}
                 </h2>
                 <div className="space-x-2 mt-4 sm:mt-0">
@@ -72,8 +71,7 @@ export default function Order() {
                     gap-2
                     bg-stone-200
                     px-6
-                    py-5"
-            >
+                    py-5">
                 <p className="font-medium">
                     {deliveryIn >= 0 ?
                         `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
@@ -82,8 +80,7 @@ export default function Order() {
                 </p>
                 <p className="
                     text-xs
-                    text-stone-500"
-                >
+                    text-stone-500">
                     (Estimated delivery: {formatDate(estimatedDelivery)})
                 </p>
             </div>
@@ -92,8 +89,7 @@ export default function Order() {
                     divide-y 
                     divide-stone-200
                     border-b
-                    border-t"
-            >
+                    border-t">
                 {
                     cart.map(item => (
                         <OrderItem key={item.pizzaId} item={item}/>
@@ -105,13 +101,11 @@ export default function Order() {
                     space-y-2
                     bg-stone-200
                     px-6
-                    py-5"
-            >
+                    py-5">
                 <p className="
                         text-sm
                         font-medium
-                        text-stone-600"
-                >
+                        text-stone-600">
                     Pizza price: {formatCurrency(orderPrice)}
                 </p>
                 {
@@ -119,16 +113,15 @@ export default function Order() {
                     <p className="
                         text-sm
                         font-medium
-                        text-stone-600"
-                    >
+                        text-stone-600">
                         Priority price: {formatCurrency(priorityPrice)}
-                    </p>}
+                    </p>
+                }
                 <p className="
                         font-bold
                         text-lg
-                        uppercase"
-                >
-                    Total: {formatCurrency(orderPrice + priorityPrice)}
+                        uppercase">
+                    Total Price: {formatCurrency(orderPrice + priorityPrice)}
                 </p>
             </div>
         </div>
@@ -137,7 +130,8 @@ export default function Order() {
 
 // Access req. params in the URL
 export async function loader({ params }) {
-    if (!params.orderId) throw new Error('orderId is missing in the params');
+    if (!params.orderId) throw new Error('orderId is missing in the parameter');
+    
     const order = await getOrder(params.orderId);
     return order;
 }

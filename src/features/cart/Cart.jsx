@@ -1,14 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getCart } from "./Cartslice.js";
-import { clearCart } from "./Cartslice.js";
+import { getCart, clearCart, getCartTotalPrice } from "./Cartslice.js";
 import LinkButton from "../../ui/LinkButton.jsx";
 import Button from "../../ui/Button.jsx";
 import CartItem from "./CartItem.jsx";
 import EmptyCart from "./EmptyCart.jsx";
+import { formatCurrency } from "../../utils/helpers.js";
  
 export default function Cart() {
     const cart = useSelector(getCart);
     const username = useSelector(store => store.user.username);
+    const totalPrice = useSelector(getCartTotalPrice);
     const dispatch = useDispatch();
 
     if (!cart.length) return <EmptyCart />
@@ -47,6 +48,15 @@ export default function Cart() {
                 ))
                 }
             </ul>
+
+            <div className="my-10">
+                <h1 className="
+                        text-lg
+                        font-bold
+                        uppercase">
+                    Total Price: {formatCurrency(totalPrice)}
+                </h1>
+            </div>
 
             <div className="
                     mt-6 
