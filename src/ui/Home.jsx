@@ -4,7 +4,6 @@ import Button from "../ui/Button.jsx";
 
 export default function Home() {
     const username = useSelector(store => store.user.username);
-    console.log(username);
 
     return (
         <div className="

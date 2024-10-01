@@ -4,26 +4,35 @@ const initialState = {
     cart: [] 
 };
 
+
+// Slice 
 const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
         addItem(state, action) {
+            // payload - pizza object
             state.cart.push(action.payload);
         },
         deleteItem(state, action) {
+            // payload - ID
             state.cart = state.cart.filter(item => item.pizzaId !== action.payload);
         },
         incrementQuantity(state, action) {
+            // payload - ID
             const item = state.cart.find(item => item.pizzaId === action.payload);
             item.quantity ++;
             item.totalPrice = item.unitPrice * item.quantity;
         },
         decreaseQuantity(state, action) {
+            // payload - ID
             const item = state.cart.find(item => item.pizzaId === action.payload);
             item.quantity --;
             item.totalPrice = item.unitPrice * item.quantity;
 
+            if (item.quantity === 0) {
+                cartSlice.caseReducers.deleteItem(state, action);
+            }
         },
         clearCart(state) {
             state.cart = [];
@@ -35,12 +44,15 @@ export const { addItem, deleteItem, incrementQuantity, decreaseQuantity, clearCa
 
 export default cartSlice.reducer;
 
-export function getCart(store) {
-    return store.cart.cart;
+
+
+// Selectors functions 
+export function getCart(state) {
+    return state.cart.cart;
 }
 
-export function getCartTotalPizzas(store) {
-    return store.cart.cart.reduce((acc, curr) => {
+export function getCartTotalPizzas(state) {
+    return state.cart.cart.reduce((acc, curr) => {
         return acc + curr.quantity;
     }, 0)
 }
@@ -53,8 +65,8 @@ export function getQuantityById(id) {
     };
 }
 
-export function getCartTotalPrice(store) {
-    return store.cart.cart.reduce((acc, curr) => {
+export function getCartTotalPrice(state) {
+    return state.cart.cart.reduce((acc, curr) => {
         return acc + curr.totalPrice;  
     }, 0)
 }
