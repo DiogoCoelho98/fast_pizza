@@ -1,6 +1,8 @@
 import { formatCurrency, formatDate, calcMinutesLeft  } from "../../utils/helpers";
 import { getOrder } from "../../services/apiRestaurant.js"
 import { useLoaderData } from "react-router";
+import { useFetcher } from "react-router-dom";
+import { useEffect } from "react";
 import OrderItem from "./OrderItem.jsx";
 
 // test id's - IIDSAT/CQU92U
@@ -16,6 +18,17 @@ export default function Order() {
         estimatedDelivery,
         cart
      } = order.data;
+
+     const fetcher = useFetcher();
+
+     // GET request to fetch data available on "/menu" without navigation
+     useEffect(() => {
+        if (!fetcher?.data && fetcher.state === "idle") {
+            fetcher.load("/menu")
+        }
+     }, [fetcher])
+
+     console.log(fetcher.data)
     
     const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
@@ -92,7 +105,11 @@ export default function Order() {
                     border-t">
                 {
                     cart.map(item => (
-                        <OrderItem key={item.pizzaId} item={item}/>
+                        <OrderItem 
+                            key={item.pizzaId} 
+                            item={item}
+                            ingredients={fetcher.data?.find(el => el.id === item.pizzaId).ingredients ?? []}
+                            isLoadingIngredients={fetcher.state === "loading"}/>
                     ))
                 }
             </ul>

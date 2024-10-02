@@ -18,7 +18,6 @@ export const fetchAddress = createAsyncThunk("user/fetchAddress", async function
     };
     // Reverse geocoding to access address description
     const address = await getAddress(position);
-    console.log(address)
 
     return {position, address};
 })
@@ -50,7 +49,7 @@ const userSlice = createSlice({
             .addCase(fetchAddress.pending, state => {
                 state.status = "loading";
             })
-            .addCase(fetchAddress.rejected, (state, action) => {
+            .addCase(fetchAddress.rejected, (state) => {
                 state.status = "error";
                 state.error = "There was a problem getting your address. Make sure to fill this field";
             })

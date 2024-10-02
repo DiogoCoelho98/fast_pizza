@@ -66,8 +66,8 @@ export default function CreateOrder() {
                     <input 
                         type="text" 
                         name="customer"
-                        defaultValue={username}  
-                        required
+                        value={username}  
+                        readOnly
                         className="input grow"/>
                 </div>
 
@@ -178,7 +178,8 @@ export default function CreateOrder() {
                     
                     <input 
                         type="hidden"
-                        name="position"/>
+                        name="position"
+                        value={position.latitude && position.longitude ? `${position.latitude}, ${position.longitude}` : ""}/>
 
                     <Button 
                         disabled={isSubmitting} 
@@ -197,12 +198,13 @@ export default function CreateOrder() {
 export async function action({ request }) { 
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
+    
     const order = {
         ...data,
         cart: JSON.parse(data.cart),
         priority: data.priority === "true",
     };
-
+    
     const errors = {};
     if (!isValidPhone(order.phone)) {
         errors.phone = "Introduce a correct phone number (e.g, +1 (555) 555-5555 )";
