@@ -47,7 +47,7 @@ export default function Order() {
                 <h2 className="
                         text-xl 
                         font-semibold">
-                    Order #{id}
+                    Order Number: #{id}
                 </h2>
                 <div className="space-x-2 mt-4 sm:mt-0">
                     {priority && <span className="
