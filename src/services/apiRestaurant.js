@@ -60,6 +60,7 @@ export async function updateOrder(id, updatedOrder) {
         });
         if (!res.ok) throw new Error("Error updating order");
         const data = await res.json();
+        
         if (data.status !== "success") throw new Error(data.message || "Failed to update the order");
         return data;
     } catch(err) {

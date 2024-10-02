@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router";
 import { useFetcher } from "react-router-dom";
 import { useEffect } from "react";
 import OrderItem from "./OrderItem.jsx";
+import UpdatePriority from "./UpdatePriority.jsx";
 
 // test id's - IIDSAT/CQU92U
 
@@ -21,14 +22,12 @@ export default function Order() {
 
      const fetcher = useFetcher();
 
-     // GET request to fetch data available on "/menu" without navigation
+     // Fetch data available on "/menu" without navigation
      useEffect(() => {
         if (!fetcher?.data && fetcher.state === "idle") {
             fetcher.load("/menu")
         }
      }, [fetcher])
-
-     console.log(fetcher.data)
     
     const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
@@ -108,7 +107,7 @@ export default function Order() {
                         <OrderItem 
                             key={item.pizzaId} 
                             item={item}
-                            ingredients={fetcher.data?.find(el => el.id === item.pizzaId).ingredients ?? []}
+                            ingredients={fetcher.data?.find(el => el.id === item.pizzaId)?.ingredients ?? []}
                             isLoadingIngredients={fetcher.state === "loading"}/>
                     ))
                 }
@@ -141,6 +140,8 @@ export default function Order() {
                     Total Price: {formatCurrency(orderPrice + priorityPrice)}
                 </p>
             </div>
+
+            {!priority && <UpdatePriority order={order.data}/>}
         </div>
     );
 }
