@@ -8,6 +8,7 @@ import CreateOrder, { action as createOrderAction } from "./features/order/Creat
 import { action as actionUpdatePriority } from "./features/order/UpdatePriority.jsx";
 import AppLayout from "./ui/AppLayout.jsx";
 import NotFound from "./ui/NotFound.jsx";
+import ProtectRoute from "./ui/ProtectRoute.jsx";
 
 const router = createBrowserRouter([  
   {
@@ -20,22 +21,38 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: <Menu/>,
+        element: (
+          <ProtectRoute>
+            <Menu/>
+          </ProtectRoute>
+        ),
         loader: menuLoader,
         errorElement: <NotFound/>
       },
       {
         path: "/cart",
-        element: <Cart/>
+        element: (
+          <ProtectRoute>
+            <Cart/>
+          </ProtectRoute>
+        )
       },
       {
         path: "/order/new",
-        element: <CreateOrder/>,
+        element: (
+          <ProtectRoute>
+            <CreateOrder/>
+          </ProtectRoute>
+        ),
         action: createOrderAction 
       },
       {
         path: "/order/:orderId",
-        element: <Order/>,
+        element: (
+          <ProtectRoute>
+            <Order/>
+          </ProtectRoute>
+        ),
         loader: orderLoader,
         errorElement: <NotFound/>,
         action: actionUpdatePriority
