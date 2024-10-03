@@ -10,22 +10,14 @@ export default function Home() {
             my-10
             px-4
             sm:my-16
-            text-center
-            "
-        >
+            text-center">
             <h1 className="
                 text-xl
                 md:text-3xl 
                 font-semibold
-                mb-8
-                "
-                 
-            >
-                The Best Pizza <br/>
-                <span className="
-                    text-yellow-500
-                    "
-                >
+                mb-8">
+                    The Best Pizza <br/>
+                <span className="text-yellow-500">
                     Straight out of the Oven to you
                 </span>
             </h1>
@@ -34,8 +26,7 @@ export default function Home() {
                 username.length > 0 ? 
                     <Button 
                         to="/menu" 
-                        type="primary"
-                    >
+                        type="primary">
                         Continue ordering, {username}
                     </Button> 
                         : 

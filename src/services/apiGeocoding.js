@@ -11,8 +11,6 @@ export async function getAddress({ latitude, longitude }) {
         }
 
         const data = await res.json();
-        /* console.log("API Response:", data); */
-        
         const address = data.results[0]?.formatted || "Address not found";
         return address;
     } catch(err) {

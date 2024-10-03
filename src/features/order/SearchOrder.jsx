@@ -8,7 +8,7 @@ export default function SearchOrder() {
     function handleSubmit(e) {
         e.preventDefault();
         if (!query) return;
-        navigate(`/order/${query}`)
+        navigate(`/order/${query}`);
         setQuery("");
     }
 
@@ -33,9 +33,7 @@ export default function SearchOrder() {
                     duration-300
                     focus:outline-none
                     focus:ring
-                    focus:ring-yellow-500
-                    "   
-            />
+                    focus:ring-yellow-500"/>
        </form>
     );
 }

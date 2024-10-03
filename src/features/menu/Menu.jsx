@@ -11,8 +11,7 @@ export default function Menu() {
             {menu.map(pizza => (
                 <MenuItem 
                     pizza={pizza} 
-                    key={pizza.id}
-                />
+                    key={pizza.id}/>
             ))}
         </ul>
     );

@@ -7,9 +7,7 @@ export default function Loader() {
             inset-0
             flex
             items-center
-            justify-center
-            "
-        >
+            justify-center">
             <div className="loader"></div>
         </div>
     );

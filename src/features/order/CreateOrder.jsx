@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Form, redirect, useNavigation, useActionData } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -85,8 +85,8 @@ export default function CreateOrder() {
                             type="tel" 
                             name="phone"
                             required 
-                            className="input w-full"   
-                        />
+                            className="input w-full"/>
+
                         {formErrors?.phone &&   
                             <p className="
                                     text-xs

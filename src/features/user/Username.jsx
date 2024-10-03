@@ -9,9 +9,7 @@ export default function Username() {
             text-sm
             font-semibold
             hidden
-            md:block
-            "
-        >
+            md:block">
             <h3>{username}</h3>
         </div>
     );

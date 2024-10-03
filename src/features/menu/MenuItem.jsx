@@ -32,24 +32,20 @@ export default function MenuItem({ pizza }) {
                 alt={name} 
                 className={`
                     h-24 
-                    ${soldOut ? "grayscale opacity-70" : ""}`
-                }
-            />
+                    ${soldOut ? "grayscale opacity-70" : ""}`}/>
 
             <div className="
                     flex 
                     flex-grow
                     flex-col
-                    pt-0.5"
-            >
+                    pt-0.5">
                 <p className="font-medium">
                     {name}
                 </p>
                 <p className="
                     text-sm italic
                      text-stone-500
-                     capitalize"
-                >
+                     capitalize">
                     {ingredients.join(",")}
                 </p>
                 
@@ -57,13 +53,10 @@ export default function MenuItem({ pizza }) {
                         mt-auto 
                         flex
                         items-center
-                        justify-between"
-                >
-                    {
-                        !soldOut ? 
+                        justify-between">
+                    {!soldOut ? 
                             <p 
-                                className="text-sm"
-                            >
+                                className="text-sm">
                                 {formatCurrency(unitPrice)}
                             </p> 
                             : 
@@ -71,29 +64,25 @@ export default function MenuItem({ pizza }) {
                                 text-sm
                                 uppercase
                                 font-medium
-                                text-stone-500"
-                            >
+                                text-stone-500">
                                 Sold out
                             </p>
                     }
+    
                     <div className="flex gap-4">
-                        {
-                            !soldOut && !isInCart && 
+                        {!soldOut && !isInCart && 
                                 <Button 
                                     type="small"
-                                    onClick={handleAddCart}
-                                >
-                                    Add to cart
+                                    onClick={handleAddCart}>
+                                        Add to cart
                                 </Button>
                         }
-                        {
-                            isInCart && (
+                        {isInCart && (
                                 <div className="flex items-center gap-3 sm:gap-8">
                                     <UpdateItemQuantity
                                         pizzaId={id}
-                                        currentQuantity={currentQuantity}
-                                    />
-                                <DeleteItem pizzaId={id} />
+                                        currentQuantity={currentQuantity}/>
+                                    <DeleteItem pizzaId={id} />
                                 </div>
                             )
                         }

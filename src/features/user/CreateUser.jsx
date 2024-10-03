@@ -24,8 +24,7 @@ export default function CreateUser() {
                     text-sm
                     text-stone-600
                     md:text-base
-                    "
-            >
+                    ">
             👋 Welcome! Please start by telling us your name
             </p>
 
@@ -38,8 +37,7 @@ export default function CreateUser() {
                 className="
                     w-72
                     mb-8
-                    input"
-            />
+                    input"/>
 
             {fullName !== "" && (
                 <div>

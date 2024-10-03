@@ -6,8 +6,6 @@ import { useEffect } from "react";
 import OrderItem from "./OrderItem.jsx";
 import UpdatePriority from "./UpdatePriority.jsx";
 
-// test id's - IIDSAT/CQU92U
-
 export default function Order() {
     const order = useLoaderData();
     const { 
@@ -35,15 +33,14 @@ export default function Order() {
         <div className="
                 py-6
                 px-4
-                space-y-8"
-        >
+                space-y-8">
+
             <div className="
                     flex 
                     items-center
                     justify-between
                     flex-wrap
-                    gap-2"
-            >
+                    gap-2">
                 <h2 className="
                         text-xl 
                         font-semibold">
@@ -59,17 +56,15 @@ export default function Order() {
                                     font-semibold
                                     uppercase
                                     tracking-wide
-                                    space-x-2"
-                                >
-                                    Priority
+                                    space-x-2">
+                                        Priority
                                 </span>
                     }
                     <span className="
                             text-green-600
                             font-semibold
                             uppercase
-                            tracking-wide"
-                    > 
+                            tracking-wide"> 
                         {status} order
                     </span>
                 </div>

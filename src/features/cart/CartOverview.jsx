@@ -21,14 +21,12 @@ export default function CartOverview() {
              md:text-base
              flex
              justify-between
-             items-center
-             ">
+             items-center">
             <p className="
                 text-stone-300
                 font-semibold
                 space-x-4 
-                sm:space-x-6   
-                ">
+                sm:space-x-6">
                 <span>{totalNumberPizzas} pizzas</span>
                 <span>Total price: {formatCurrency(totalPrice)}</span>
             </p>

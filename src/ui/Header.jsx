@@ -15,13 +15,10 @@ export default function Header() {
                 border-stone-200
                 flex
                 items-center
-                justify-between
-                "
-        >
+                justify-between">
             <Link 
                 to="/" 
-                className="tracking-widest"
-                >
+                className="tracking-widest">
                     Go to Homepage
             </Link>
             <Username />

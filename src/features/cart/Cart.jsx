@@ -21,17 +21,14 @@ export default function Cart() {
     return ( 
         <div className="
                 px-4
-                py-3"
-        >
-            <LinkButton to={"/menu"}
-            >
+                py-3">
+            <LinkButton to={"/menu"}>
                 &larr; Back to menu
             </LinkButton>
             <h2 className="
                     mt-7 
                     text-xl 
-                    font-semibold"
-            >
+                    font-semibold">
                 Your cart, {username}
             </h2>
 
@@ -39,9 +36,7 @@ export default function Cart() {
                     divide-y
                     divide-stone-200
                     border-b
-                    mt-3
-                    "
-            >
+                    mt-3">
                 {
                 cart.map(item => (
                     <CartItem key={item.pizzaId} item={item} />
@@ -62,19 +57,15 @@ export default function Cart() {
                     mt-6 
                     space-x-6
                     flex
-                    justify-between
-                    "
-            >
+                    justify-between">
                 <Button 
                     to={"/order/new"} 
-                    type="primary"
-                >
-                    Order pizzas
+                    type="primary">
+                        Order pizzas
                 </Button>
                 <Button 
                     type="secondary" 
-                    onClick={handleClearCart}
-                >
+                    onClick={handleClearCart}>
                         Clear cart
                 </Button>
             </div>

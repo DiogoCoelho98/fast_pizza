@@ -4,7 +4,6 @@ const initialState = {
     cart: [] 
 };
 
-
 // Slice 
 const cartSlice = createSlice({
     name: "cart",
@@ -46,7 +45,7 @@ export default cartSlice.reducer;
 
 
 
-// Selectors functions 
+// Selector functions 
 export function getCart(state) {
     return state.cart.cart;
 }
