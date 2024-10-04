@@ -13,7 +13,7 @@ Pizza Co. is an interactive React application that allows users to browse a menu
 - **Add to Cart**: Browse the pizza menu and add items to your cart.
 - **Quantity Management**: Increase or decrease the quantity of each item in the cart.
 - **Geolocation**: Fill in your address details automatically using geolocation.
-- **Order Tracking**: Search for an order by ID to check the estimated delivery time.
+- **Order Tracking**: Search for an order by ID to check, for example the estimated delivery time.
 
 ## Getting Started
 
@@ -32,8 +32,8 @@ npm install
 #### Environment Variables
 Create a .env file in the root directory of the project and add the following environment variables:
 ```makefile
-VITE_API_KEY=bdc_f2636f779af34488abffed8c13942000
-VITE_OPENCAGE_API_KEY=f7ae4d47083d43d5bca096e65693d868
+VITE_API_KEY=your_api_key_here 
+VITE_OPENCAGE_API_KEY=your_opencage_api_key_here
 ```
 ### Starting the server
 1) Run the server
@@ -48,7 +48,7 @@ npm run dev
 - Manage Cart: Adjust the quantity of items in your cart as needed.
 - Place Order: Proceed by clicking the "Open Cart" button and reviewing your order details.
 - Fill in the required fields, such as phone number, address, and first name (geolocation can help fill the address).
-- Order Tracking: After placing an order, use the Order ID to track your order status and see the estimated delivery time.
+- Order Tracking: After placing an order, use the Order ID to track your order status and see , for example the estimated delivery time.
 
 ## Contacts
 - **https://www.linkedin.com/in/diogo-borges-coelho/**
