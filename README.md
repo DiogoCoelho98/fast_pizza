@@ -3,6 +3,13 @@
 ## Description
 Pizza Co. is an interactive React application that allows users to browse a menu, customize their orders, and track delivery times. Users can easily add pizzas to their cart, adjust quantities, and fill in their address details using geolocation. The application allows users to search for their order by ID and track how much time is left for delivery. Built with Vite and styled with Tailwind CSS, Pizza Co. offers a smooth and responsive user experience.
 
+## Project Goals
+The purpose of this project was to solidify my understanding of key React concepts and gain experience with various tools. Specifically, the goals were:
+- React and Redux Toolkit: Strengthen the use of Redux Toolkit for managing global state within the app.
+- React Router: Deepen my knowledge of routing using createBrowserRouter and other advanced features from react-router-dom.
+- Tailwind CSS: Improve my styling efficiency with Tailwind CSS, learning best practices for utility-first CSS.
+- Full Stack Integration: Implement real-world features such as geolocation and order tracking to simulate a functional pizza ordering app.
+
 ## Built With
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
