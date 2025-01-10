@@ -57,6 +57,9 @@ npm run dev
 - Fill in the required fields, such as phone number, address, and first name (geolocation can help fill the address).
 - Order Tracking: After placing an order, use the Order ID to track your order status and see , for example the estimated delivery time.
 
+## Project Link
+**https://pizza-diogo.netlify.app**  
+
 ## Contacts
 - **https://www.linkedin.com/in/diogo-borges-coelho/**
 - **diogocoelho19988@gmail.com**
